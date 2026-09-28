@@ -391,7 +391,6 @@ def download_drive_url(url):
         url,
         output=str(output_file),
         quiet=True,
-        fuzzy=True,
         use_cookies=False,
     )
 
@@ -404,7 +403,7 @@ def download_drive_url(url):
     match = re.search(r"[?&]id=([^&]+)", url)
     file_id = match.group(1) if match else "drive_file"
 
-    # Google Drive download does not always expose the filename.
+    # Google Drive  does not always expose the filename.
     # Read the response headers as a fallback.
     response = requests.get(url, stream=True, timeout=20)
     content_type = response.headers.get("content-type", "").lower()
@@ -420,7 +419,7 @@ def download_drive_url(url):
     if extension is None:
         # User can still use a normal Drive file URL when its extension
         # is visible in the URL; otherwise ask them to use a file link
-        # whose downloaded filename is recognizable.
+        # whose ed filename is recognizable.
         url_match = re.search(
             r"/([^/?#]+\.(?:pdf|docx|txt|md))(?:[?#]|$)",
             url,
